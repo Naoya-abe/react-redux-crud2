@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 const App = () => {
   const animalProfiles = [
@@ -11,7 +12,7 @@ const App = () => {
       weight: 100,
     },
     {
-      name: 'Penguin',
+      name: 69,
     },
   ];
 
@@ -36,8 +37,9 @@ const Animal = props => {
   );
 };
 
-Animal.defaultProps = {
-  weight: 50,
+Animal.propTypes = {
+  name: propTypes.string,
+  weight: propTypes.number.isRequired,
 };
 
 export default App;
