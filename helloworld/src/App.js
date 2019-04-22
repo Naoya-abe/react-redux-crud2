@@ -1,33 +1,43 @@
 import React from 'react';
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <label htmlFor="pig">pig</label>
-//         <input
-//           type="text"
-//           onChange={() => {
-//             console.log('I love micropig');
-//           }}
-//         />
-//       </React.Fragment>
-//     );
-//   }
-// }
-
 const App = () => {
+  const animalProfiles = [
+    {
+      name: 'Micro Pig',
+      weight: 20,
+    },
+    {
+      name: 'Lion',
+      weight: 100,
+    },
+    {
+      name: 'Penguin',
+    },
+  ];
+
+  console.log(animalProfiles[0].name);
+
   return (
     <div>
-      <Pig />
-      <Pig />
-      <Pig />
+      {animalProfiles.map((profile, index) => {
+        return (
+          <Animal name={profile.name} weight={profile.weight} key={index} />
+        );
+      })}
     </div>
   );
 };
 
-const Pig = () => {
-  return <div>oink oink</div>;
+const Animal = props => {
+  return (
+    <div>
+      I love {props.name}! Max-weight is {props.weight}kg
+    </div>
+  );
+};
+
+Animal.defaultProps = {
+  weight: 50,
 };
 
 export default App;
