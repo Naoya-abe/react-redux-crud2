@@ -1,45 +1,40 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import React, {Component} from 'react';
 
-const App = () => {
-  const animalProfiles = [
-    {
-      name: 'Micro Pig',
-      weight: 20,
-    },
-    {
-      name: 'Lion',
-      weight: 100,
-    },
-    {
-      name: 69,
-    },
-  ];
+const App = () => <Counter />;
 
-  console.log(animalProfiles[0].name);
+class Counter extends Component {
+  //Componentの初期化時にcallされる
+  constructor(props) {
+    super(props);
+    this.state = {count: 0};
+    console.log(this.state.count);
+  }
 
-  return (
-    <div>
-      {animalProfiles.map((profile, index) => {
-        return (
-          <Animal name={profile.name} weight={profile.weight} key={index} />
-        );
-      })}
-    </div>
-  );
-};
+  handlePlusButton = () => {
+    //絶対にやってはいけないパターン
+    // this.state = {count: this.state.count + 1};
 
-const Animal = props => {
-  return (
-    <div>
-      I love {props.name}! Max-weight is {props.weight}kg
-    </div>
-  );
-};
+    //状態を変更したいときに使うおきまりのメソッド
+    //setStateを使ってさえいれば、その状態に関連するDOMが勝手に再描画される
+    this.setState({count: this.state.count + 1});
+  };
 
-Animal.propTypes = {
-  name: propTypes.string,
-  weight: propTypes.number.isRequired,
-};
+  handleMinusButton = () => {
+    this.setState({count: this.state.count - 1});
+  };
+
+  //setState実行された時にrender()が再度実行される
+  render() {
+    console.log('render');
+
+    return (
+      <React.Fragment>
+        <div>count: {this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    );
+  }
+}
 
 export default App;
