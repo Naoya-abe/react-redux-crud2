@@ -1,5 +1,3 @@
-import {type} from 'os';
-
 //のちにReduser?側でも使うのでexportしておく
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
