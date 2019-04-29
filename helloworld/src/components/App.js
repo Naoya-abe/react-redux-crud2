@@ -33,6 +33,7 @@ class App extends Component {
     //インスタンスのpropsにはstateやactionをこれから渡していくので
     //propsをこれから変数に入れていく。
     const props = this.props;
+    console.log(props);
 
     return (
       <React.Fragment>
